@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 //通常はこのルーティングから自作したControllerへ情報を渡すので、必要なコントローラをuseしておく必要がある
 use App\Http\Controllers\InertiaTestController;
+use App\Http\Controllers\ItemController;
+
+//リソースフルを作り、かつミドルウェアを使ってログイン後のみアクセスを許可する
+Route::resource('items', ItemController::class) 
+->middleware(['auth', 'verified']);
+
+/* ---------------------------- */
 
 Route::get('/inertia-test', function () {
     return Inertia::render('InertiaTest');
