@@ -2,6 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link} from '@inertiajs/vue3';
 import { Inertia } from '@inertiajs/inertia';
+import FlashMessage from '@/Components/FlashMessage.vue';
 
 defineProps({ 
     items: Array
@@ -23,7 +24,7 @@ defineProps({
 
                         <section class="text-gray-600 body-font">
                             <div class="container px-5 mb-6 mx-auto">
-                                
+                                <FlashMessage/>
 
                                     <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto mb-4">
                                         <!-- 商品登録ページに飛ばす -->

@@ -38,7 +38,8 @@ class HandleInertiaRequests extends Middleware
                 //フラッシュメッセージ。
                 //このHnadleInertiaRequestというInertia専用ミドルウェアによって、
                 //messageという名前で、controllerから送られてきた変数を代入している
-                'message' => fn() => $request->session()->get('message')
+                'message' => fn() => $request->session()->get('message'),
+                'status' => fn() => $request->session()->get('status')
             ]
         ];
     }

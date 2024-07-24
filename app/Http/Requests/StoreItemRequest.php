@@ -14,17 +14,18 @@ class StoreItemRequest extends FormRequest
         return true;
     }
 
-    /**
+    /**4
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
+        //バリデーション
         return[ 
             'name' => ['required', 'max:50'], 
             'memo' => ['required', 'max:255'], 
-            'price' => ['required', 'numeric'], 
+            'price' => ['required', 'numeric', 'min:0']
             ];
     }
 }

@@ -258,6 +258,9 @@ return [
         'year' => '年',
         'attributes' => '件名',
         'content' => '本文',
+        'memo' => 'メモ',
+        'price' => '料金'
+
     ],
 
 ];

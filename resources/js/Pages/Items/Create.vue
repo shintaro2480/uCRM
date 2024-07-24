@@ -3,6 +3,11 @@
     import { Head, Link } from '@inertiajs/vue3';
     import { reactive } from 'vue';
     import { Inertia } from '@inertiajs/inertia';
+    import ValidationErrors from '@/Components/ValidationErrors.vue';
+
+defineProps({ 
+    errors: Object
+ })
 
 //titleとcontentという変数をリアクティブにしておく
 const form = reactive({
@@ -31,6 +36,7 @@ const storeItem = ()=> {
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
+                            <ValidationErrors :errors="errors" />
                             <section class="text-gray-600 body-font relative">
                                 <form @submit.prevent="storeItem">
                                     <div class="container px-5 py-2 mx-auto">
@@ -56,7 +62,7 @@ const storeItem = ()=> {
                                                 <div class="w-full">
                                                     <div class="relative">
                                                         <label for="price" class="leading-7 text-sm text-gray-600">価格</label>
-                                                        <input type="number" id="price" name="price" v-model="form.price" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                        <input type="number" min="0" id="price" name="price" v-model="form.price" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                                     </div>
                                                 </div>
                                                 
