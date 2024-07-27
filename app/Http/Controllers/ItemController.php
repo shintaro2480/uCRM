@@ -55,9 +55,16 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      */
+
+     //引数は$itemとなっており、これをddすると、Itemモデルのインスタンス型のデータが出力される
+     //Laravelのルートモデルバインディングを使用することで、ルートパラメータが自動的にEloquentモデルのインスタンスに変換されるらしい
     public function show(Item $item)
     {
-        //
+        //dd($item);
+        //一件分のデータとともに、Showアクションへ渡して表示
+        return Inertia::render('Items/Show',[
+            'item' => $item
+        ]);
     }
 
     /**
@@ -66,6 +73,9 @@ class ItemController extends Controller
     public function edit(Item $item)
     {
         //
+        return Inertia::render('Items/Edit',[
+            'item' => $item
+        ]);
     }
 
     /**
