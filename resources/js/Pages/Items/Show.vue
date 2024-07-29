@@ -10,6 +10,13 @@ defineProps({
     item: Object
  })
 
+import { Inertia } from '@inertiajs/inertia'
+
+const deleteItem = id => { 
+ Inertia.delete(route('items.destroy', {item: id}), { 
+ onBefore: () => confirm('本当に削除しますか?') 
+ }) 
+}
 
 </script>
 
@@ -31,8 +38,15 @@ defineProps({
                                     <div class="container px-5 py-2 mx-auto">
                                         <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto mb-4">
                                         <!-- 商品登録ページに飛ばす -->
-                                            <Link as="button" :href="route('items.edit', {item: item.id})" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">編集する</Link>
+                                         
+                                            <Link as="button" :href="route('items.edit', {item: item.id})" class="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">編集する</Link>
+                                            <button @click="deleteItem(item.id)" class="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">削除する</button>
                                         </div>
+                                        <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto mb-4">
+                                            
+                                            <!-- <button @click="deleteItem(item.id)" >削除する</button> -->
+                                        </div>
+
                                         <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                             <div class="flex flex-wrap -m-2">
 

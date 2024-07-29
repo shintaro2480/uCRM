@@ -21,8 +21,8 @@ const form = reactive({
 
 //以下はInertiaを使ったPOSTの送信手法。/itemsにPOSTを送る=items.store(ItemControllerのstoreアクション)が受け取る
 //ということがルーティング内のResourcefullで定義されているので、つまりは以下によって新規アイテムの保存が行われる
-const storeItem = ()=> {
-    Inertia.post('/items', form)
+const updateItem = id=> {
+    Inertia.put(route('items.update', { item : id}), form)
  };
 
 </script>
@@ -41,7 +41,7 @@ const storeItem = ()=> {
                         <div class="p-6 text-gray-900">
                             <ValidationErrors :errors="errors" />
                             <section class="text-gray-600 body-font relative">
-                                <form @submit.prevent="storeItem">
+                                <form @submit.prevent="updateItem(form.id)">
                                     <div class="container px-5 py-2 mx-auto">
                                     
                                         <div class="lg:w-1/2 md:w-2/3 mx-auto">
@@ -80,7 +80,7 @@ const storeItem = ()=> {
                                                 </div>
                                                 
                                                 <div class="w-full mt-6">
-                                                    <button type="submit" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">登録する</button>
+                                                    <button type="submit" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">更新する</button>
                                                 </div>
                                 
                                             </div>
