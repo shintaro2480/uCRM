@@ -23,7 +23,7 @@ class StoreItemRequest extends FormRequest
     {
         //バリデーション
         return[ 
-            'name' => ['required', 'max:50'], 
+            'name' => ['required', 'max:255'], 
             'memo' => ['required', 'max:255'], 
             'price' => ['required', 'numeric', 'min:0']
             ];
