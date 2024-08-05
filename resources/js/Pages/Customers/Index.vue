@@ -4,16 +4,26 @@ import { Head, Link} from '@inertiajs/vue3';
 import { Inertia } from '@inertiajs/inertia';
 import FlashMessage from '@/Components/FlashMessage.vue';
 //import { onMounted } from 'vue';
+import { ref } from 'vue';
+//searchCustomersメソッドでコントローラーにsearch.valueを渡す際にInertiaが必要なので、読み込んでおく
 
 //pagenation用のビュー
 import Pagination from '@/Components/Pagination.vue'
 
+//コントローラーからのデータを受け取る
 defineProps({ 
     //pagenate()で受け取っているので、ArrayではなくObjectで受け取る
     customers: Object
 })
 
+//リアクティブ変数。初期値は空文字
+const search = ref('');
 
+// ref の値を取得するには .valueが必要 
+//Inertia.getによって、ページ全体をリロードせずに、一部のコンテンツだけが更新される、という解釈で正しいらしい
+const searchCustomers = () => { 
+ Inertia.get(route('customers.index', { search: search.value })) 
+}
 
 // onMounted( () => {
 //     console.log(props.customers)
@@ -41,6 +51,11 @@ defineProps({
                         <section class="text-gray-600 body-font">
                             <div class="container px-5 mb-6 mx-auto">
                                 <FlashMessage/>
+
+                                <div class="flex mt-4 lg:w-2/3 w-full mx-auto mb-4">
+                                    <input type="text" name="search" v-model="search"> 
+                                    <button class="bg-blue-300 text-white py-2 px-2" @click="searchCustomers">検索</button>
+                                </div>
 
                                     <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto mb-4">
                                         <!-- 顧客登録ページに飛ばす -->
