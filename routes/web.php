@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\InertiaTestController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PurchaseController;
 
 //リソースフルを作り、かつミドルウェアを使ってログイン後のみアクセスを許可する
 Route::resource('items', ItemController::class) 
@@ -16,6 +17,10 @@ Route::resource('items', ItemController::class)
 
 Route::resource('customers', CustomerController::class) 
 ->middleware(['auth', 'verified']); 
+
+//Purchase(購買履歴)用ルーティングもリソースフルで準備
+Route::resource('purchases', PurchaseController::class)
+->middleware(['auth', 'verified']);
 
 /* ---------------------------- */
 
