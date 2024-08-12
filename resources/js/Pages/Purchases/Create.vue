@@ -10,7 +10,12 @@ import { getToday } from '@/common';
 import MicroModal from '@/Components/MicroModal.vue';
 import ValidationErrors from '@/Components/ValidationErrors.vue';
 
-
+onMounted(() => {
+    axios.get('/api/user')
+        .then(res => {
+            console.log(res)
+        })
+})
 
 //Controllerから流れてくるデータは
 //'customers' => $customers, 
@@ -160,14 +165,14 @@ const setCustomerId = id => {
                                                         <tr v-for="item in itemList" :key="item.id">
                                                             <td class="border-b-2 border-gray-200 px-4 py-3">{{
                                                                 item.id
-                                                            }}</td>
+                                                                }}</td>
                                                             <td class="border-b-2 border-gray-200 px-4 py-3">{{
                                                                 item.name
-                                                            }}
+                                                                }}
                                                             </td>
                                                             <td class="border-b-2 border-gray-200 px-4 py-3">{{
                                                                 item.price
-                                                            }}
+                                                                }}
                                                             </td>
                                                             <td class="border-b-2 border-gray-200 px-4 py-3">
                                                                 <select name="quantity" v-model="item.quantity">
@@ -178,7 +183,7 @@ const setCustomerId = id => {
                                                             <td class="border-b-2 border-gray-200 px-4 py-3">{{
                                                                 item.price *
                                                                 item.quantity
-                                                            }}</td>
+                                                                }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

@@ -1,8 +1,12 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 //isShowというbooleanをreactiveで用意し、ボタンクリックしたらtrue-falseをトグルさせることにする
 const isShow = ref(false)
-const toggleStatus = () => { isShow.value = !isShow.value } 
+const toggleStatus = () => { isShow.value = !isShow.value }
+
+
+
+
 </script>
 
 <template>
