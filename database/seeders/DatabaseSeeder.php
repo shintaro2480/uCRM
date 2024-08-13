@@ -14,21 +14,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([ 
-            UserSeeder::class, 
+        $this->call([
+            UserSeeder::class,
             ItemSeeder::class
-            ]);
+        ]);
         // User::factory(10)->create();
 
         \App\Models\Customer::factory(400)->create();
 
         $items = \App\Models\Item::all();
 
-        Purchase::factory(100)->create()->each(function(Purchase $purchase) use ($items){ 
-    $purchase->items()->attach( 
-    $items->random(rand(1,3))->pluck('id')->toArray(),  
-    // 1～3個のitemをpurchaseにランダムに紐づけ     
-    ['quantity' => rand(1, 5) ] );  });
-
+        Purchase::factory(10000)->create()->each(function (Purchase $purchase) use ($items) {
+            $purchase->items()->attach(
+                $items->random(rand(1, 3))->pluck('id')->toArray(),
+                // 1～3個のitemをpurchaseにランダムに紐づけ     
+                ['quantity' => rand(1, 5)]
+            );
+        });
     }
 }

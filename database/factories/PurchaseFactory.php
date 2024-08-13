@@ -20,11 +20,16 @@ class PurchaseFactory extends Factory
      */
     public function definition(): array
     {
+        $decade = $this->faker->dateTimeThisDecade;
+        $created_at = $decade->modify('+2 years');
+
+
         return [
             //今いる顧客からランダムにidを設定する
             'customer_id' => rand(1, Customer::count()),
             //ステータス(キャンセルされたかどうか)も、fakerでbooleanを指定する。0か1か
             'status' => $this->faker->boolean,
+            'created_at' => $created_at
         ];
     }
 }
