@@ -10,12 +10,14 @@ import { getToday } from '@/common';
 import MicroModal from '@/Components/MicroModal.vue';
 import ValidationErrors from '@/Components/ValidationErrors.vue';
 
+/*
 onMounted(() => {
     axios.get('/api/user')
         .then(res => {
             console.log(res)
         })
 })
+        */
 
 //Controllerから流れてくるデータは
 //'customers' => $customers, 
@@ -28,7 +30,7 @@ defineProps({
 */
 
 const props = defineProps({
-    'customers': Array,
+    //    'customers': Array,
     'items': Array,
     'errors': Object
 })
@@ -84,10 +86,14 @@ const storePurchase = () => {
 //数量フォーム用
 const quantity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-//idを引数に取ってリアクティブデータにidを押し込むsetterメソッド
+//idを引数に取ってリアクティブデータにidを押し込むsetterメソッド。
+//ちなみに子から打ちあがってきたデータは、引数(id)の形で受け取ることができる
 const setCustomerId = id => {
+    //打ちあがってきた情報を、formに入れておけば、購入情報を登録できる
     form.customer_id = id
 }
+
+
 
 </script>
 
@@ -124,12 +130,15 @@ const setCustomerId = id => {
                                             <div class="p-2 w-full">
                                                 <div class="relative">
 
-                                                    <MicroModal />
+                                                    <!-- 子から打ちあがってくるイベントを、@で受け取る -->
+                                                    <MicroModal @update:customerId="setCustomerId" />
 
                                                     <label for="customer"
                                                         class="leading-7 text-sm text-gray-600">会員名</label>
                                                     <!-- <MicroModal @update:customerId="setCustomerId" /> -->
                                                     <!-- 以下は、Modalコンポネントを使わずにselectboxで会員を出力する例-->
+                                                    <!-- 以下のselectboxは、会員名検索機能を作ったのでもういらない -->
+                                                    <!--
                                                     <select name="customer" v-model="form.customer_id"
                                                         class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                                         <option v-for="customer in
@@ -137,6 +146,7 @@ const setCustomerId = id => {
                                                             {{ customer.id }} : {{ customer.name }}
                                                         </option>
                                                     </select>
+                                                    -->
                                                 </div>
                                             </div>
 

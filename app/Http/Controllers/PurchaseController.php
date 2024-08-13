@@ -34,7 +34,9 @@ class PurchaseController extends Controller
         $items = Item::select('id', 'name', 'price')->where('is_selling', true)->get();
         //上のデータをCreateビューに渡す
         return Inertia::render('Purchases/Create', [
-            'customers' => $customers,
+            //顧客検索機能はAPIでとっているので、customers情報はもういらない
+            //    'customers' => $customers,
+
             'items' => $items
         ]);
     }
